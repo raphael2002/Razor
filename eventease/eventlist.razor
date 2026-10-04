@@ -1,0 +1,22 @@
+@page "/events"
+
+<h2>Upcoming Events</h2>
+
+@foreach (var evt in Events)
+{
+    <EventCard EventName="@evt.Name"
+               EventDate="@evt.Date"
+               EventLocation="@evt.Location" />
+
+    <NavLink href="/events/@evt.Id">View Details</NavLink>
+    <br /><br />
+}
+
+@code {
+    public List<EventModel> Events = new()
+    {
+        new EventModel { Id = 1, Name = "Corporate Summit", Date = DateTime.Now.AddDays(10), Location = "New York" },
+        new EventModel { Id = 2, Name = "Tech Expo", Date = DateTime.Now.AddDays(20), Location = "Chicago" },
+        new EventModel { Id = 3, Name = "Marketing Meetup", Date = DateTime.Now.AddDays(30), Location = "San Francisco" }
+    };
+}

@@ -1,0 +1,14 @@
+<div class="event-card">
+    <h3>@EventName</h3>
+    <p>Date: @EventDate.ToShortDateString()</p>
+    <p>Location: @EventLocation</p>
+
+    <input @bind="EventName" placeholder="Edit event name" />
+    <input @bind="EventLocation" placeholder="Edit location" />
+</div>
+
+@code {
+    [Parameter] public string EventName { get; set; }
+    [Parameter] public DateTime EventDate { get; set; }
+    [Parameter] public string EventLocation { get; set; }
+}
