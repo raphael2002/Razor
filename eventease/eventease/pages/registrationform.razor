@@ -1,0 +1,36 @@
+@page "/register/{id:int}"
+
+<h2>Register for Event</h2>
+
+<EditForm Model="@Registration" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <label>Name</label>
+    <InputText @bind-Value="Registration.Name" />
+
+    <label>Email</label>
+    <InputText @bind-Value="Registration.Email" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>@StatusMessage</p>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    public RegistrationModel Registration = new();
+    public string StatusMessage = "";
+
+    private void HandleSubmit()
+    {
+        StatusMessage = "Registration successful!";
+    }
+}
+
+public class RegistrationModel
+{
+    [Required] public string Name { get; set; }
+    [Required, EmailAddress] public string Email { get; set; }
+}

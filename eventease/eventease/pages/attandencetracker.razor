@@ -1,0 +1,29 @@
+@page "/attendance/{id:int}"
+
+<h2>Attendance Tracker</h2>
+
+<ul>
+    @foreach (var attendee in Attendees)
+    {
+        <li>@attendee</li>
+    }
+</ul>
+
+<input @bind="NewAttendee" placeholder="Add attendee" />
+<button @onclick="AddAttendee">Add</button>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    public List<string> Attendees = new();
+    public string NewAttendee = "";
+
+    void AddAttendee()
+    {
+        if (!string.IsNullOrWhiteSpace(NewAttendee))
+        {
+            Attendees.Add(NewAttendee);
+            NewAttendee = "";
+        }
+    }
+}
